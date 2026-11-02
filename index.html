@@ -1,0 +1,116 @@
+<!doctype html>
+<html lang="gu">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Gujarati Web Design Studio</title>
+<style>
+:root{--bg:#f3f6fb;--panel:#fff;--ink:#172033;--muted:#64748b;--line:#dce3ee;--accent:#ea7a16;--soft:#fff1df}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font-family:Arial,"Noto Sans Gujarati",sans-serif}
+.top{background:linear-gradient(120deg,#172033,#334c70);color:#fff;padding:22px max(16px,calc((100% - 1200px)/2))}
+.top h1{margin:0 0 7px;font-size:clamp(22px,4vw,32px)}.top p{margin:0;color:#dce6f5}
+.wrap{max-width:1200px;margin:20px auto;padding:0 14px;display:grid;grid-template-columns:270px minmax(0,1fr);gap:16px}
+.panel{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:15px;min-width:0;box-shadow:0 4px 18px #1720330a}
+h2{font-size:18px;margin:0 0 12px}.muted,.hint{color:var(--muted);font-size:13px}.search,input,select,textarea{font:inherit}
+input,select,textarea{width:100%;padding:10px;border:1px solid var(--line);border-radius:9px;background:#fff;color:var(--ink);min-width:0}
+label{display:block;font-size:13px;color:var(--muted);margin:10px 0 5px}
+button,.btn{border:1px solid var(--line);background:#fff;color:var(--ink);padding:10px 12px;border-radius:9px;cursor:pointer;font:inherit}
+button:hover,.btn:hover{border-color:var(--accent)}button.primary{background:var(--accent);border-color:var(--accent);color:#fff}
+.categories{display:flex;flex-wrap:wrap;gap:6px;margin:10px 0}.categories button{font-size:12px;padding:7px 9px}
+.categories button.active{background:var(--soft);border-color:var(--accent);color:#9a4b00}
+.list{display:grid;gap:6px;max-height:570px;overflow:auto;margin-top:10px}
+.item{text-align:left;padding:9px 10px;display:flex;justify-content:space-between;gap:8px}.item small{color:var(--muted)}
+.item.active{border-color:var(--accent);background:var(--soft)}
+.main{display:grid;gap:16px;min-width:0}.grid2{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+.toolbar{display:flex;flex-wrap:wrap;gap:8px;align-items:center;justify-content:space-between}
+.preview{min-height:230px;border:1px dashed #b8c5d8;border-radius:12px;background:repeating-linear-gradient(45deg,#f8fafc,#f8fafc 10px,#f1f5f9 10px,#f1f5f9 20px);display:grid;place-items:center;padding:20px;overflow:auto}
+.preview-inner{max-width:100%;min-width:0}
+.tabs{display:flex;gap:7px;flex-wrap:wrap;margin-bottom:10px}.tabs button.active{background:#172033;color:white}
+pre{margin:0;padding:14px;background:#101827;color:#e2e8f0;border-radius:10px;white-space:pre-wrap;overflow-wrap:anywhere;max-height:340px;overflow:auto;font-size:12px;line-height:1.55}
+.actions{display:flex;flex-wrap:wrap;gap:8px;margin-top:10px}
+@media(max-width:800px){.wrap{grid-template-columns:1fr}.list{max-height:260px}.grid2{grid-template-columns:1fr 1fr}}
+@media(max-width:420px){.grid2{grid-template-columns:1fr}.top{padding:18px 14px}}
+</style>
+</head>
+<body>
+<header class="top"><h1>Gujarati Web Design Studio</h1><p>HTML • CSS • JavaScript • Live Preview • Code Editor</p></header>
+<div class="wrap">
+<aside class="panel">
+<h2>ઘટક શોધો</h2><input id="search" class="search" placeholder="નામ શોધો: Button, Header...">
+<div class="categories" id="categories"></div>
+<div class="list" id="elements"></div>
+<p class="hint">ઘટક પસંદ કરો. તેની ડિઝાઇન જમણી બાજુ બદલો.</p>
+</aside>
+<main class="main">
+<section class="panel">
+<div class="toolbar"><div><h2 id="selectedTitle">Button</h2><div class="muted" id="description">ક્લિક કરવા માટેનું બટન</div></div><span class="muted" id="count">100+ ઘટકો</span></div>
+<div class="grid2">
+<div><label>ઘટકનું નામ / ID</label><input id="name" value="my-button"></div>
+<div><label>દેખાતું લખાણ</label><input id="text" value="મારું બટન"></div>
+<div><label>Background રંગ</label><input id="bg" type="color" value="#ea7a16"></div>
+<div><label>Text રંગ</label><input id="fg" type="color" value="#ffffff"></div>
+<div><label>પહોળાઈ (px)</label><input id="width" type="number" min="40" max="1000" value="190"></div>
+<div><label>ઊંચાઈ (px)</label><input id="height" type="number" min="25" max="600" value="52"></div>
+<div><label>Font Size (px)</label><input id="size" type="number" min="8" max="100" value="17"></div>
+<div><label>ખૂણાની ગોળાઈ (px)</label><input id="radius" type="number" min="0" max="150" value="12"></div>
+<div><label>Border રંગ</label><input id="border" type="color" value="#c45d0b"></div>
+<div><label>Border જાડાઈ (px)</label><input id="bw" type="number" min="0" max="20" value="1"></div>
+<div><label>Font Family</label><select id="font"><option value="Arial,sans-serif">Arial</option><option value="Georgia,serif">Georgia</option><option value="Verdana,sans-serif">Verdana</option><option value="monospace">Monospace</option></select></div>
+<div><label>ડિઝાઇન સ્ટાઇલ</label><select id="style"><option value="normal">સામાન્ય</option><option value="shadow">3D Shadow</option><option value="outline">Outline</option><option value="gradient">Gradient</option></select></div>
+</div>
+<div class="actions"><button class="primary" id="reset">મૂળ સેટિંગ</button><button id="save">પ્રોજેક્ટ સેવ (JSON)</button><label class="btn" style="margin:0">પ્રોજેક્ટ ખોલો<input id="load" type="file" accept=".json,application/json" hidden></label></div>
+</section>
+<section class="panel">
+<div class="toolbar"><h2>Live Preview — જીવંત પ્રિવ્યૂ</h2><span class="muted">ફેરફાર તરત દેખાશે</span></div>
+<div class="preview"><div class="preview-inner" id="stage"></div></div>
+<p class="hint" id="previewInfo"></p>
+</section>
+<section class="panel">
+<h2>કોડ જુઓ અને કોપી કરો</h2>
+<div class="tabs"><button class="active" data-tab="html">HTML</button><button data-tab="css">CSS</button><button data-tab="js">JavaScript</button></div>
+<pre id="code"></pre>
+<div class="actions"><button class="primary" id="copy">કોડ કોપી કરો</button><button id="downloadOne">આ ઘટકની HTML ફાઇલ</button><button id="downloadFull">આખું ડેશબોર્ડ ડાઉનલોડ</button></div>
+<p class="hint" id="status" aria-live="polite">તૈયાર.</p>
+</section>
+</main>
+</div>
+<script>
+(()=> {
+const $=id=>document.getElementById(id);
+const groups={
+'મૂળ વેબ ભાગો':['Header','Logo','Navbar','Menu','Sidebar','Main Content','Section','Article','Footer','Container','Wrapper','Layout','Grid','Row','Column'],
+'બટન અને કંટ્રોલ':['Button','Submit Button','Reset Button','Cancel Button','Toggle','Switch','Checkbox','Radio Button','Dropdown','Select','Slider','Pagination','Tabs','Accordion','Tooltip'],
+'HTML તત્વો':['Heading','Paragraph','Div','Span','Image','Link','Table','Table Row','Table Cell','Form','Input','Textarea','Label','List','Ordered List','Unordered List','Video','Audio','Iframe','Horizontal Rule'],
+'ડિઝાઇન અને દેખાવ':['Card','Badge','Alert','Modal','Popup','Toast','Progress Bar','Loader','Spinner','Carousel','Gallery','Avatar','Breadcrumb','Divider','Shadow Box'],
+'ફોર્મ અને માહિતી':['Search Box','Email Field','Password Field','Date Picker','Number Field','File Upload','Color Picker','Range Input','Submit Form','Contact Form'],
+'એડિટર અને ગ્રાફિક્સ':['Canvas','Stage','Preview','Editor','Text Editor','Image Editor','Color Palette','Layer','Toolbar','Properties Panel'],
+'ડેશબોર્ડ અને સિસ્ટમ':['Dashboard','Admin Panel','Widget','Notification','Profile','Login Panel','Register Panel','Settings','API Status','Data Table'],
+'SEO અને વેબ':['Meta Title','Meta Description','Canonical Link','Sitemap','Robots Tag','Open Graph','Favicon','Web Manifest','Responsive View','Dark Mode']
+};
+const desc={
+Header:'પેજનો ઉપરનો ભાગ',Navbar:'પેજના વિભાગો વચ્ચે જવા માટેની લિંક્સ',Footer:'પેજનો નીચેનો ભાગ',Button:'ક્લિક કરીને ક્રિયા કરાવવાનું બટન',Canvas:'ડ્રોઇંગ અથવા ગ્રાફિક્સ માટેનું ક્ષેત્ર',Table:'માહિતી હરોળ અને કોલમમાં બતાવે છે',Modal:'પેજ ઉપર ખુલતી ડાયલોગ વિન્ડો',Card:'સંબંધિત માહિતીનું એક વિઝ્યુઅલ બોક્સ',Input:'વપરાશકર્તા પાસેથી લખાણ લેવાનું ક્ષેત્ર',Preview:'ફેરફારનું પૂર્વદર્શન',Dashboard:'માહિતી અને નિયંત્રણનું મુખ્ય પેજ'};
+const defaults={name:'my-element',text:'મારું ડિઝાઇન',bg:'#ea7a16',fg:'#ffffff',width:190,height:52,size:17,radius:12,border:'#c45d0b',bw:1,font:'Arial,sans-serif',style:'normal'};
+let current='Button',category='બધા',tab='html';
+const all=Object.entries(groups).flatMap(([g,a])=>a.map(n=>({name:n,group:g})));
+function safe(s){return String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));}
+function slug(s){return String(s).toLowerCase().replace(/[^a-z0-9_-]+/g,'-').replace(/^-|-$/g,'')||'my-element';}
+function get(){let o={};Object.keys(defaults).forEach(k=>o[k]=$(k).value);['width','height','size','radius','bw'].forEach(k=>o[k]=Math.max(0,Math.min(k==='width'?1000:k==='height'?600:k==='size'?100:k==='radius'?150:20,Number(o[k])||0)));return o;}
+function tagFor(n){if(n.includes('Heading'))return 'h2';if(n==='Paragraph'||n==='Article')return 'p';if(n==='Image'||n==='Avatar')return 'img';if(n==='Link'||n==='Canonical Link')return 'a';if(n.includes('Input')||n.includes('Field')||n==='Search Box')return 'input';if(n==='Textarea')return 'textarea';if(n==='Table')return 'table';if(n==='Table Row')return 'tr';if(n==='Table Cell')return 'td';if(n==='Form'||n==='Contact Form'||n==='Submit Form')return 'form';if(n==='Header')return 'header';if(n==='Footer')return 'footer';if(n==='Navbar'||n==='Menu')return 'nav';if(n==='Section'||n==='Main Content')return 'section';if(n==='Canvas')return 'canvas';if(n==='Video')return 'video';if(n==='Audio')return 'audio';if(n==='Horizontal Rule'||n==='Divider')return 'hr';if(n==='Unordered List')return 'ul';if(n==='Ordered List')return 'ol';if(n==='List')return 'li';if(n==='Label')return 'label';if(n==='Checkbox'||n==='Radio Button'||n==='Toggle'||n==='Switch')return 'input';if(n==='Dropdown'||n==='Select')return 'select';if(n==='Progress Bar')return 'progress';if(n==='Image Editor'||n==='Text Editor'||n==='Editor'||n==='Preview'||n==='Stage'||n==='Canvas')return 'div';return 'div';}
+function renderList(){let cats=['બધા',...Object.keys(groups)];$('categories').innerHTML=cats.map(c=>`<button class="${category===c?'active':''}" data-cat="${safe(c)}">${safe(c)}</button>`).join('');$('categories').querySelectorAll('button').forEach(b=>b.onclick=()=>{category=b.dataset.cat;renderList()});let q=$('search').value.toLowerCase();let shown=all.filter(x=>(category==='બધા'||x.group===category)&&x.name.toLowerCase().includes(q));$('elements').innerHTML=shown.map(x=>`<button class="item ${current===x.name?'active':''}" data-name="${safe(x.name)}"><span>${safe(x.name)}</span><small>પસંદ કરો</small></button>`).join('')||'<p class="muted">કોઈ પરિણામ નથી.</p>';$('elements').querySelectorAll('[data-name]').forEach(b=>b.onclick=()=>choose(b.dataset.name));$('count').textContent=all.length+' ઘટકો';}
+function choose(n){current=n;$('selectedTitle').textContent=n;$('description').textContent=desc[n]||'આ HTML / UI ઘટકનો નમૂનો';let o=get();o.name=slug(n);o.text=n+' Preview';Object.keys(o).forEach(k=>$(k).value=o[k]);renderList();render();}
+function cssText(o){let bg=o.style==='gradient'?`linear-gradient(135deg,${o.bg},${o.border})`:o.style==='outline'?'transparent':o.bg;return `background:${bg};color:${o.style==='outline'?o.bg:o.fg};width:${o.width}px;min-height:${o.height}px;max-width:100%;font-size:${o.size}px;font-family:${o.font};border:${o.bw}px solid ${o.border};border-radius:${o.radius}px;padding:10px 14px;${o.style==='shadow'?`box-shadow:0 6px 0 ${o.border},0 8px 15px #0003;`:''}`;}
+function snippets(){let o=get(),tag=tagFor(current),id=slug(o.name),text=safe(o.text);let attrs=tag==='input'?' type="text" placeholder="'+text+'"':tag==='img'?' alt="'+text+'" src="https://placehold.co/240x120"':tag==='a'?' href="#"':tag==='canvas'?' width="'+o.width+'" height="'+o.height+'"':'';let inner=['input','img','hr','canvas','progress'].includes(tag)?'':text;let h=`<${tag} id="${id}"${attrs}>${inner}</${tag}>`;let c=`#${id} {\n ${cssText(o).replaceAll(';',';\\n ')}\n}`;let j=`// ${current} માટે નમૂનાનો JavaScript\nconst element = document.getElementById('${id}');\nif (element) {\n  element.addEventListener('click', () => {\n    console.log('${current} clicked');\n  });\n}`;return {html:h,css:c,js:j};}
+function render(){let o=get(),tag=tagFor(current),stage=$('stage');stage.innerHTML='';let el=document.createElement(tag);el.id=slug(o.name);el.style.cssText=cssText(o);if(tag==='input'){el.placeholder=o.text;el.type='text'}else if(tag==='img'){el.alt=o.text;el.src='https://placehold.co/240x120?text=Image+Preview'}else if(tag==='canvas'){el.textContent='Canvas'}else if(tag==='progress'){el.max=100;el.value=65}else if(tag==='select'){let op=document.createElement('option');op.textContent=o.text;el.append(op)}else if(tag==='a'){el.href='#';el.textContent=o.text}else el.textContent=o.text;if(['button','a'].includes(tag))el.addEventListener('click',e=>{e.preventDefault();$('status').textContent=current+' પર ક્લિક થયું.'});stage.append(el);$('previewInfo').textContent='ઘટક: '+current+' | HTML Tag: <'+tag+'>';let s=snippets();$('code').textContent=s[tab];}
+function setStatus(t){$('status').textContent=t}
+Object.keys(defaults).forEach(k=>$(k).addEventListener('input',render));$('search').addEventListener('input',renderList);
+document.querySelectorAll('[data-tab]').forEach(b=>b.addEventListener('click',()=>{tab=b.dataset.tab;document.querySelectorAll('[data-tab]').forEach(x=>x.classList.toggle('active',x===b));render()}));
+$('reset').onclick=()=>{Object.keys(defaults).forEach(k=>$(k).value=defaults[k]);render();setStatus('મૂળ સેટિંગ પાછાં આવ્યાં.')};
+$('copy').onclick=async()=>{try{await navigator.clipboard.writeText($('code').textContent);setStatus('કોડ કોપી થયો.')}catch(e){setStatus('કોપી સુવિધા ઉપલબ્ધ ન હોય તો કોડને લાંબું દબાવી પસંદ કરીને Copy કરો.')}};
+function download(name,content,type='text/html'){let a=document.createElement('a'),u=URL.createObjectURL(new Blob([content],{type}));a.href=u;a.download=name;a.click();setTimeout(()=>URL.revokeObjectURL(u),1000);}
+$('downloadOne').onclick=()=>{let s=snippets(),o=get();download(slug(o.name)+'.html',`<!doctype html><html lang="gu"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>${safe(o.name)}</title><style>body{font-family:Arial;padding:30px} ${s.css}</style>${s.html}<script>${s.js.replaceAll('</script>','<\\/script>')}<\/script></html>`);setStatus('ઘટકની HTML ફાઇલ ડાઉનલોડ થઈ.')};
+$('downloadFull').onclick=()=>setStatus('ZIP પેકેજમાં રહેલી index.html ફાઇલ ખોલો; આ બટન ફક્ત અલગ ઘટકની HTML બનાવે છે.');
+$('save').onclick=()=>download('design-project.json',JSON.stringify({current,settings:get()},null,2),'application/json');
+$('load').onchange=async e=>{let f=e.target.files[0];if(!f)return;try{let d=JSON.parse(await f.text());if(d.settings)Object.keys(defaults).forEach(k=>{if(d.settings[k]!==undefined)$(k).value=d.settings[k]});if(d.current&&all.some(x=>x.name===d.current))current=d.current;renderList();render();setStatus('પ્રોજેક્ટ લોડ થયો.')}catch(err){setStatus('આ JSON ફાઇલ વાંચી શકાઈ નથી.')}e.target.value=''};
+Object.keys(defaults).forEach(k=>$(k).value=defaults[k]);renderList();choose('Button');
+})();
+</script>
+</body></html>
